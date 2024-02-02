@@ -44,6 +44,7 @@ const NumberDisplay = () => {
     <div className="flex flex-col items-center border hover:p-8 p-4 duration-300 rounded-md select-none gap-4 hover:gap-8">
       <p className="text-xl md:text-4xl">Quadra Test</p>
       <div
+        // I've used cn() utility function to avoid conflicts on color change
         className={cn(
           "bg-accent p-4 w-[140px] md:w-[240px] text-center rounded-md md:text-5xl text-2xl",
           color
