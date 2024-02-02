@@ -1,10 +1,10 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { RootState } from "@/store/index"
-import { setNumbers } from "@/slices/numbersSlice"
 import { cn } from "@/lib/utils"
+import { setNumbers } from "@/slices/numbersSlice"
+import { RootState } from "@/store/index"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 const NumberDisplay = () => {
   const dispatch = useDispatch()

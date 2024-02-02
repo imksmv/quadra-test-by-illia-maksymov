@@ -1,7 +1,7 @@
 import Image from "next/image"
+import Link from "next/link"
 import Logo from "../public/Logo.webp"
 import { ModeToggle } from "./ModeToggle"
-import Link from "next/link"
 
 export default function Header() {
   return (
