@@ -2,6 +2,7 @@ import { setNumber } from "@/slices/numberSlice"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { toast } from "sonner"
+import { useConfetti } from "./useConfetti"
 
 export const useWebSocket = () => {
   const dispatch = useDispatch()
@@ -13,6 +14,8 @@ export const useWebSocket = () => {
       toast.success("Hooorey! It works! 😎", {
         position: "top-center",
       })
+
+      useConfetti()
     }
 
     ws.onmessage = (event) => {

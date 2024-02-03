@@ -13,6 +13,7 @@
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-slot": "^1.0.2",
     "@reduxjs/toolkit": "^2.1.0",
+    "canvas-confetti": "^1.9.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cors": "^2.8.5",
@@ -31,6 +32,7 @@
     "ws": "^8.16.0"
   },
   "devDependencies": {
+    "@types/canvas-confetti": "^1.6.4",
     "@types/express": "^4.17.21",
     "@types/express-ws": "^3.0.4",
     "@types/node": "^20",
