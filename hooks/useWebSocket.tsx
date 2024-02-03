@@ -8,7 +8,7 @@ export const useWebSocket = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:3001/ws")
+    const ws = new WebSocket("ws://localhost:3001/ws") // Simulate an error by changing the port to 3002, for instance.
 
     ws.onopen = () => {
       toast.success("Hooorey! It works! 😎", {
@@ -16,6 +16,12 @@ export const useWebSocket = () => {
       })
 
       useConfetti()
+    }
+
+    ws.onerror = () => {
+      toast.error("Oh no! An error... 😮‍💨", {
+        position: "top-center",
+      })
     }
 
     ws.onmessage = (event) => {
