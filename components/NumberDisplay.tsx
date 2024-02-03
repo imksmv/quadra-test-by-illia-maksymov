@@ -1,54 +1,37 @@
 "use client"
 
-import { cn } from "@/lib/utils"
-import { setNumbers } from "@/slices/numbersSlice"
+import { useWebSocket } from "@/hooks/useWebSocket"
 import { RootState } from "@/store/index"
-import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useEffect, useRef, useState } from "react"
+import { useSelector } from "react-redux"
 
 const NumberDisplay = () => {
-  const dispatch = useDispatch()
+  const [color, setColor] = useState<string>("text-white")
+  const currentNumber = useSelector((state: RootState) => state.number.value)
+  const previousNumberRef = useRef<number>(currentNumber)
 
-  const [previousNumber, setPreviousNumber] = useState<number | null>(null)
-  const [color, setColor] = useState<string>("")
-
-  const currentNumber = useSelector((state: RootState) => state.numbers.value)
+  useWebSocket() // I used separation of concerns principle, for more code readability.
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:3001/ws")
+    const previousNumber = previousNumberRef.current
 
-    ws.onmessage = (event) => {
-      const message = JSON.parse(event.data)
-      const newNumber = message.number
+    const newColor =
+      currentNumber > previousNumber
+        ? "text-success"
+        : currentNumber < previousNumber
+        ? "text-destructive"
+        : "text-white"
 
-      if (previousNumber !== null) {
-        setColor(
-          newNumber > previousNumber
-            ? "text-success"
-            : newNumber < previousNumber
-            ? "text-destructive"
-            : "text-white"
-        )
-      }
+    setColor(newColor)
 
-      dispatch(setNumbers(newNumber))
-      setPreviousNumber(newNumber)
-    }
-
-    return () => {
-      ws.close()
-    }
-  }, [dispatch, previousNumber])
+    previousNumberRef.current = currentNumber
+  }, [currentNumber])
 
   return (
     <div className="flex flex-col items-center border hover:p-8 p-4 duration-300 rounded-md select-none gap-4 hover:gap-8">
-      <p className="text-xl md:text-4xl">Quadra Test</p>
+      <h1 className="text-xl md:text-4xl">Quadra Test</h1>
       <div
-        // I've used cn() utility function to avoid conflicts on color change
-        className={cn(
-          "bg-accent p-4 w-[140px] md:w-[240px] text-center rounded-md md:text-5xl text-2xl",
-          color
-        )}
+        className={`bg-accent p-4 w-[140px] md:w-[240px] text-center rounded-md md:text-5xl text-2xl ${color}`}
       >
         {currentNumber}
       </div>

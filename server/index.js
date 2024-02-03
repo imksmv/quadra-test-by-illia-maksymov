@@ -3,6 +3,8 @@ const expressWs = require("express-ws")(express())
 const app = expressWs.app
 
 app.ws("/ws", (ws) => {
+  console.log("Client connected to WebSocket")
+
   const intervalId = setInterval(() => {
     const number =
       Math.floor(Math.random() * (9_999_999 - 1_000_000 + 1)) + 1_000_000

@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit"
-import numbersReducer from "@/slices/numbersSlice"
+import numberReducer from "@/slices/numberSlice"
 
 export const store = configureStore({
   reducer: {
-    numbers: numbersReducer,
+    number: numberReducer,
   },
 })
 
