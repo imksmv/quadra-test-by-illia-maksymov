@@ -1,7 +1,15 @@
+import Logo from "../public/Logo.webp"
+import Image from "next/image"
+
 export default function Footer() {
   return (
     <footer className="border-t rounded-t-3xl">
-      <div className="container h-14 flex items-center justify-end">
+      <div className="container h-14 flex items-center justify-between">
+        <Image
+          className="h-8 w-8 grayscale object-contain"
+          src={Logo}
+          alt="Logo"
+        />
         <p>
           Built with ❤️ by{" "}
           <a
