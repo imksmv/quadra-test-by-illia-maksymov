@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
 import { ThemeProvider } from "@/components/ThemeProvider"
+import { Toaster } from "@/components/ui/sonner"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import React from "react"
@@ -29,6 +30,7 @@ export default function RootLayout({
             <Header />
             <main className="grow">{children}</main>
             <Footer />
+            <Toaster richColors />
           </div>
         </ThemeProvider>
       </body>

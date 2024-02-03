@@ -1,12 +1,19 @@
 import { setNumber } from "@/slices/numberSlice"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
+import { toast } from "sonner"
 
 export const useWebSocket = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
     const ws = new WebSocket("ws://localhost:3001/ws")
+
+    ws.onopen = () => {
+      toast.success("Hooorey! It works! 😎", {
+        position: "top-center",
+      })
+    }
 
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data)
